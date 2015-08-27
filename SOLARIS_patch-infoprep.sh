@@ -1,6 +1,6 @@
 
-# Please run once with ksh
-# Gathers Solaris SVM information before OS patching
+# Description: Gathers Solaris SVM information before OS patching
+# Recommended to use ksh
 
 dated=`date +%d%m%Y-%X`
 echo $dated > `hostname`-patchprep-$dated.info
