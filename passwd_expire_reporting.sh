@@ -12,14 +12,14 @@ if [ -f /etc/shadow ]; then
   [ -z "$current_epoch" ] && current_epoch=0
 
   # Compute the age of the user's password
-  usr_pwdage=`echo $epoch - $current_epoch | /bin/bc`
+  usr_pwdage=`echo $epoch - $current_epoch | bc`
   
   # Compute and display the number of days until password expiration
   max=`echo $usr_entry | grep "$usr_name:" | cut -d: -f5`
   [ -z "$max" ] && max=0
-  expire=`echo $max - $usr_pwdage | /bin/bc`
+  expire=`echo $max - $usr_pwdage | bc`
 
-  change=`echo $current_epoch + 1 | /bin/bc`
+  change=`echo $current_epoch + 1 | bc`
   last_change="`perl -e 'print scalar localtime('$change' * 24 *3600);'`"
 
   echo "ACCOUNT: $usr_name : LAST CHANGE: $last_change : EXPIRE: $expire"
