@@ -1,3 +1,7 @@
+#! /bin/bash
+# Description: This is a simple script to handle request for temporary admin access using an account name "tmpadmin" with
+# SUDO SU access. Account expiry is handles using account expiry settings on the system
+
 # Check if tmpadmin exist
 id tmpadmin > /dev/null 2>&1
 if [ "$?" -ne 0 ]; then
@@ -9,10 +13,12 @@ if [ "$?" -ne 0 ]; then
  fi
  usermod -e 1980-07-15 -c "NONE" -A unixgrp tmpadmin
 fi
- 
+
 TMPADM_Year=`chage -l tmpadmin | grep "Account Expires" | awk '{print $5}' | sed 's/,//'`
 TMPADM_Day=`chage -l tmpadmin | grep "Account Expires" | awk '{print $4}' | sed 's/,//'`
 TMPADM_Mon=`chage -l tmpadmin | grep "Account Expires" | awk '{print $3}' | sed 's/,//'`
+
+# Use to handle the date format differences
 case "$TMPADM_Mon" in
 Jan) TMPADM_MM=01;;
 Feb) TMPADM_MM=02;;
@@ -27,6 +33,8 @@ Oct) TMPADM_MM=10;;
 Nov) TMPADM_MM=11;;
 Dec) TMPADM_MM=12;;
 esac
+
+# Main start
 echo -n "Enter Ticket#: "
 read req_input1
 echo -n "Enter Year of Expiration (YYYY): "
