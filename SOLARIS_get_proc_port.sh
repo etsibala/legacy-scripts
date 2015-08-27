@@ -1,10 +1,9 @@
-#!/bin/ksh
-# Script to gather NUS HP-UX server information/logs
-# Author: Eugene Sibala
+#!/bin/bash
+# Description: Script to gather HP-UX server information/logs
 # Date    : Aug2008
 # Use to show the process owner of a listening port
 #
-# Usage: ./SOLARIS_get_proc_port.txt 
+# Usage: ./SOLARIS_get_proc_port.sh 
 #
 
 
