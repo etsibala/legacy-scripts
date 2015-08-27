@@ -1,12 +1,12 @@
 #!/usr/bin/sh
-# Script to gather HP-UX server information/logs
+# Description: Script to gather HP-UX server information/logs
 # Author: Eugene Sibala
 # Date    : May2009
 #
 # Usage: ./hpux_admintool.txt < logchk | hpinfo > [ term | email ]
 #
 
-HPUX_ADMIN="admin@darncool.com"
+HPUX_ADMIN="root@localhost"
 
 
 #Functions
