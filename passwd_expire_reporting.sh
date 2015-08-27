@@ -1,8 +1,8 @@
 #! /bin/bash
 # Descripton: This simple script will display output of system accounts and their password expiry details
 
-# Find the epoch time since the user's password was last changed
-epoch=`/bin/perl -e 'print int(time/(60*60*24))'`
+# Get current epoch time 
+epoch=`perl -e 'print int(time/(60*60*24))'`
 
 if [ -f /etc/shadow ]; then
  cat /etc/shadow | while read usr_entry
@@ -20,8 +20,9 @@ if [ -f /etc/shadow ]; then
   expire=`echo $max - $usr_pwdage | bc`
 
   change=`echo $current_epoch + 1 | bc`
-  last_change="`perl -e 'print scalar localtime('$change' * 24 *3600);'`"
-
-  echo "ACCOUNT: $usr_name : LAST CHANGE: $last_change : EXPIRE: $expire"
+  last_change="`perl -e 'print scalar localtime('$change' * 24 * 3600);' | sed 's/ ..:..:.. /, /' `"
+  next_change="`perl -e 'print scalar localtime('$expire' * 24 * 3600);' | sed 's/ ..:..:.. /, /' `"
+  
+  echo "ACCOUNT: $usr_name : LAST CHANGE: $last_change : EXPIRE: $next_change"
  done
 fi
