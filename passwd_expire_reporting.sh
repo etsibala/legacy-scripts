@@ -1,3 +1,5 @@
+#! /bin/bash
+# Descripton: This simple script will display output of system accounts and their password expiry details
 
 # Find the epoch time since the user's password was last changed
 epoch=`/bin/perl -e 'print int(time/(60*60*24))'`
